@@ -21,6 +21,7 @@ void setup() {
   display.init();
 
   display.setFont(ArialMT_Plain_10);
+  display.clear();
 
 }
 
@@ -127,21 +128,17 @@ int demoLength = (sizeof(demos) / sizeof(Demo));
 long timeSinceLastModeSwitch = 0;
 
 void loop() {
-  // clear the display
   display.clear();
+  
   // draw the current demo method
-  demos[demoMode]();
-
-  display.setTextAlignment(TEXT_ALIGN_RIGHT);
-  display.drawString(10, 128, String(millis()));
-  // write the buffer to the display
+  display.drawString(0, 0, "this is a test");
+  delay(100);
   display.display();
 
-  if (millis() - timeSinceLastModeSwitch > DEMO_DURATION) {
-    demoMode = (demoMode + 1)  % demoLength;
-    timeSinceLastModeSwitch = millis();
+  delay(500);
+  display.clear();
+  drawProgressBarDemo();
+  delay(500);
+  display.display();
   }
-  counter++;
-  delay(10);
-  // commit
-}
+  
